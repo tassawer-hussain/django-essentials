@@ -15,12 +15,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
-from home import views
+# Here imported the views from the home app.
+# But in future, if we delete the home app this will throw error.
+# This creates a dependency.
+# So commented the below line and created a urls.py file in the home app itself
+# from home import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home', views.home),
+    path('', include('home.urls')),
 
 ]
