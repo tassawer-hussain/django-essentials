@@ -23,6 +23,12 @@ class NotesListView(ListView):
     context_object_name = "notes" # defualt is object. This will be use in the template file to render the data
     template_name = "notes/notes_list.html" # we can skip this because it's django naming standards
 
+class PopularNotesListView(ListView):
+    model = Notes
+    context_object_name = "notes" # defualt is object. This will be use in the template file to render the data
+    template_name = "notes/popular_notes_list.html" # we can skip this because it's django naming standards
+    queryset = Notes.objects.filter(likes__gte=1)
+
 class NotesDetailView(DetailView):
     model = Notes
     context_object_name = "note"
