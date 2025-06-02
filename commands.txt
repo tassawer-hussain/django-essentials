@@ -1,0 +1,25 @@
+python --version                                        # return python installed version
+pip freeze                                              # display all installed packages
+pip install Django                                      # install django framework
+django-admin startproject PROJECTNAME .                 # create project in the current directory
+django-admin startapp PROJECTNAME .                     # create a modular app in the current directory
+python manage.py runserver                              # run the manage.py file to create the server with default settings
+python manage.py migrate                                # run the migration to create/update the database schema
+python manage.py createsuperuser                        # create super user for the app
+python manage.py makemigrations                         # Create the migration after creating the model class
+
+####################
+  Django Shell tool
+####################
+python manage.py shell                                  # start the shell
+from notes.models import notes                          # import the notes models from notes app
+mynote = Notes.objects.get(pk='1')                      # Get the record with primary key 1.
+mynote.title                                            # display title property of the model
+mynote.text                                             # display text property of the model
+Notes.objects.all()                                     # return all notes from the database table
+new_note = Notes.objects.create(title="A Second note", text="This is the Second note created using the shell")
+Notes.objects.all()                                     # return all notes from the database table
+Notes.objects.filter(title__startswith="My")            # Get the notes that title start with the word "My"
+Notes.objects.filter(text__icontains='Django')          # filter results that contains this word
+Notes.objects.exclude(text__icontains='Django')         # filter results that does not contains this word
+Notes.objects.filter(text__icontains='Django').exclude(title__icontains='Django')   # filter record in which text contains the word Django but the title does not
