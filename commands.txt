@@ -23,3 +23,12 @@ Notes.objects.filter(title__startswith="My")            # Get the notes that tit
 Notes.objects.filter(text__icontains='Django')          # filter results that contains this word
 Notes.objects.exclude(text__icontains='Django')         # filter results that does not contains this word
 Notes.objects.filter(text__icontains='Django').exclude(title__icontains='Django')   # filter record in which text contains the word Django but the title does not
+
+######################################################
+After adding foreign key to the notes models
+######################################################
+python manage.py shell
+from django.contrib.auth.models import User
+user = User.objects.get(pk=1)
+user.notes.count()
+user.notes.all()
