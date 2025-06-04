@@ -2,7 +2,11 @@
 
 {% block content %}
 
-<form action="{% url 'notes.new' %}" method="post">
+<!-- REMOVED THE URL ATTRIBUTES.
+BECAUSE THE FORM IS INTELLIGENT ENOUGH TO DETERMINE WHICH ACTION IS GOING TO PERFORM ADD/UPDATE
+
+<form action="{% url 'notes.new' %}" method="post"> -->
+<form method="post">
 
     <!-- Cross-Site Request Forgery -->
     {% csrf_token %}
@@ -17,5 +21,7 @@
     {{form.errors.title.as_text}}
 </div>
 {% endif %}
+
+<a href="{% url 'notes.list' %}" class="btn btn-secondary my-5">cancel</a>
 
 {% endblock %}
