@@ -51,6 +51,13 @@ class NotesCreateView(LoginRequiredMixin, CreateView):
     form_class = NotesForm
     login_url = '/admin'
 
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
+
+
 class NotesUpdateView(LoginRequiredMixin, UpdateView):
     model = Notes
     success_url = '/smart/notes'
