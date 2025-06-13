@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 from datetime import datetime
@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required  # used in function ba
 from django.contrib.auth.mixins import LoginRequiredMixin  # used in class base view
 
 from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.forms import UserCreationForm
 
 from django.views.generic import TemplateView
 
@@ -31,3 +32,13 @@ class LoginInterfaceView(LoginView):
 
 class LogoutInterfaceView(LogoutView):
     template_name = 'home/logout.html'
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')  # Redirect to login page after signup
+    else:
+        form = UserCreationForm()
+    return render(request, 'home/signup.html', {'form': form})
