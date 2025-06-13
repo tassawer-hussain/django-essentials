@@ -1,6 +1,8 @@
 python --version                                        # return python installed version
 pip freeze                                              # display all installed packages
 pip install Django                                      # install django framework
+pip install pytest                                      # install pytest testing framework
+pip install pytest-django                               # install pytest testing framework for django
 django-admin startproject PROJECTNAME .                 # create project in the current directory
 django-admin startapp PROJECTNAME .                     # create a modular app in the current directory
 python manage.py runserver                              # run the manage.py file to create the server with default settings
