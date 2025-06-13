@@ -44,6 +44,11 @@ class NotesDetailView(LoginRequiredMixin, DetailView):
     context_object_name = "note"
     login_url = '/admin'
 
+class NotesPublicDetailView(DetailView):
+    model = Notes
+    context_object_name = "note"
+    queryset = Notes.objects.filter(is_public=True)
+
 class NotesCreateView(LoginRequiredMixin, CreateView):
     model = Notes
     # fields = [ 'title', 'text' ]
